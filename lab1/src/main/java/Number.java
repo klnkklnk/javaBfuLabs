@@ -5,7 +5,6 @@ public class Number {
 
     public Number()
     {
-        boolean check;
         int numberOfDigits = 0;
         Scanner sc = new Scanner(System.in);
         this.number = sc.nextInt();
