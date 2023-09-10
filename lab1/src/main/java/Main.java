@@ -1,4 +1,7 @@
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
     public static int getNumberOfSteps()
@@ -47,6 +50,57 @@ public class Main {
         return sumOfSeries;
     }
 
+    private static int getNumberOfInstructions()
+    {
+        Scanner sc = new Scanner(System.in);
+        String instruction = "";
+        int x = 0, y = 0;
+        int numberOfInstructions = 0;
+        List<String> listOfDirections = new ArrayList<>();
+        List<Integer> listOfSteps = new ArrayList<>();
+
+        System.out.println("Введите координаты клада:");
+        int xOfTreasure = sc.nextInt();
+        int yOfTreasure = sc.nextInt();
+
+        System.out.println("Введите инструкции карты(направление - кол-во шагов):");
+        while (!Objects.equals(instruction, "стоп"))
+        {
+            instruction = sc.next();
+            if (Objects.equals(instruction, "стоп"))
+            {
+                break;
+            }
+            listOfDirections.add(instruction);
+            listOfSteps.add(sc.nextInt());
+        }
+
+        for (int i = 0; i < listOfDirections.size(); i++)
+        {
+            if (x == xOfTreasure && y == yOfTreasure)
+            {
+                break;
+            }
+            switch (listOfDirections.get(i))
+            {
+                case ("север"):
+                    y += listOfSteps.get(i);
+                    break;
+                case ("юг"):
+                    y -= listOfSteps.get(i);
+                    break;
+                case ("восток"):
+                    x += listOfSteps.get(i);
+                    break;
+                case ("запад"):
+                    x -= listOfSteps.get(i);
+                    break;
+            }
+            numberOfInstructions++;
+        }
+        return numberOfInstructions;
+    }
+
     public static void main(String[] args)
     {
         System.out.println("Пункт 1(Сиракузская последовательность):");
@@ -56,5 +110,6 @@ public class Main {
         System.out.printf("Сумма ряда равна %d\n\n", getSumOfSeries());
 
         System.out.println("Пункт 3(Ищем клад):");
+        System.out.printf("Минимальное кол-во инструкций: %d\n\n", getNumberOfInstructions());
     }
 }
