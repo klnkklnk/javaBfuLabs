@@ -143,5 +143,8 @@ public class Main {
         System.out.println("Пункт 4(Логистический максимин):");
         int[] arrayOfAnswer = getMaxHeight();
         System.out.printf("Номер дороги: %d \t Максимальная высота: %d\n\n", (arrayOfAnswer[0]+1), arrayOfAnswer[1]);
+
+        System.out.println("Пункт 5(Дважды чётное число):\n Введите число:");
+        Number number = new Number();
     }
 }
