@@ -1,7 +1,4 @@
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main {
     public static int getNumberOfSteps()
@@ -101,6 +98,37 @@ public class Main {
         return numberOfInstructions;
     }
 
+    public static int[] getMaxHeight()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите количество дорог: ");
+        int amountOfRoads = sc.nextInt();
+        int amountOfTunnels;
+        List<int[]> arrayOfRoads = new ArrayList<>();
+        int[] minOfRoads = new int[amountOfRoads];
+        Arrays.fill(minOfRoads, Integer.MAX_VALUE);
+        int numberOfRoad = 0;
+        for (int i = 0; i < amountOfRoads; i++)
+        {
+            System.out.printf("Введите количество туннелей и высоту этих туннелей на %d-й дороге: ", (i+1));
+            amountOfTunnels = sc.nextInt();
+            arrayOfRoads.add(new int[amountOfTunnels]);
+            for (int j = 0; j < amountOfTunnels; j++)
+            {
+                arrayOfRoads.get(i)[j] = sc.nextInt();
+                if (arrayOfRoads.get(i)[j] < minOfRoads[i])
+                {
+                    minOfRoads[i] = arrayOfRoads.get(i)[j];
+                }
+            }
+            if (minOfRoads[i] > minOfRoads[numberOfRoad])
+            {
+                numberOfRoad = i;
+            }
+        }
+        return new int[] {numberOfRoad, minOfRoads[numberOfRoad]};
+    }
+
     public static void main(String[] args)
     {
         System.out.println("Пункт 1(Сиракузская последовательность):");
@@ -111,5 +139,9 @@ public class Main {
 
         System.out.println("Пункт 3(Ищем клад):");
         System.out.printf("Минимальное кол-во инструкций: %d\n\n", getNumberOfInstructions());
+
+        System.out.println("Пункт 4(Логистический максимин):");
+        int[] arrayOfAnswer = getMaxHeight();
+        System.out.printf("Номер дороги: %d \t Максимальная высота: %d\n\n", (arrayOfAnswer[0]+1), arrayOfAnswer[1]);
     }
 }
