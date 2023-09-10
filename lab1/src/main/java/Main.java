@@ -129,22 +129,40 @@ public class Main {
         return new int[] {numberOfRoad, minOfRoads[numberOfRoad]};
     }
 
+    public static void taskSelection(int n)
+    {
+        switch (n)
+        {
+            case 1:
+                System.out.println("Пункт 1(Сиракузская последовательность):");
+                System.out.printf("Потребовалось %d шага/шагов\n", getNumberOfSteps());
+                break;
+            case 2:
+                System.out.println("Пункт 2(Сумма ряда):");
+                System.out.printf("Сумма ряда равна %d\n", getSumOfSeries());
+                break;
+            case 3:
+                System.out.println("Пункт 3(Ищем клад):");
+                System.out.printf("Минимальное кол-во инструкций: %d\n", getNumberOfInstructions());
+                break;
+            case 4:
+                System.out.println("Пункт 4(Логистический максимин):");
+                int[] arrayOfAnswer = getMaxHeight();
+                System.out.printf("Номер дороги: %d \t Максимальная высота: %d\n", (arrayOfAnswer[0]+1), arrayOfAnswer[1]);
+                break;
+            case 5:
+                System.out.println("Пункт 5(Дважды чётное число):\nВведите число:");
+                Number number = new Number();
+                break;
+            default:
+                System.out.print("Такой задачи не существует");
+        }
+    }
+
     public static void main(String[] args)
     {
-        System.out.println("Пункт 1(Сиракузская последовательность):");
-        System.out.printf("Потребовалось %d шага/шагов\n\n", getNumberOfSteps());
-
-        System.out.println("Пункт 2(Сумма ряда):");
-        System.out.printf("Сумма ряда равна %d\n\n", getSumOfSeries());
-
-        System.out.println("Пункт 3(Ищем клад):");
-        System.out.printf("Минимальное кол-во инструкций: %d\n\n", getNumberOfInstructions());
-
-        System.out.println("Пункт 4(Логистический максимин):");
-        int[] arrayOfAnswer = getMaxHeight();
-        System.out.printf("Номер дороги: %d \t Максимальная высота: %d\n\n", (arrayOfAnswer[0]+1), arrayOfAnswer[1]);
-
-        System.out.println("Пункт 5(Дважды чётное число):\n Введите число:");
-        Number number = new Number();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Введите номер задачи: ");
+        taskSelection(sc.nextInt());
     }
 }
